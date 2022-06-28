@@ -13,11 +13,15 @@ jobs:
         # Checkout code
       - uses: actions/checkout@main
 
+        # install CLI
+      - name: Azure CLI Action
+        uses: Azure/cli@v1
+
         # Log into Azure
       - uses: azure/login@v1
         with:
-          # credentials: ${{ secrets.AZURE_CREDENTIALS }}
-          creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
+          credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          # creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
 
         # Deploy ARM template
       - name: Run ARM deploy
